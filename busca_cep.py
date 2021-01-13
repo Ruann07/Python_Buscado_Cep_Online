@@ -5,16 +5,15 @@ import time, os
 sites_testes = ['www.google.com', 'www.yahoo.com', 'www.bb.com.br']
 
 def Busca_cep():
-    lok = True 
-    while lok == True:
+    while True:
         cCep = input('Informe o seu CEP: ')
         try:
             endereco = pycep_correios.consultar_cep(cCep)
             print('UF: ' + endereco['uf'] )
             print('Cidade: ' + endereco['cidade'] )
             print('Bairro: ' + endereco['bairro'] )
-            print('Endereço: ' +endereco['end'] )
-            lok = False
+            print('Endereço: ' + endereco['end'] )
+            break
         except:
             print('Cep Invalido')
 
@@ -32,9 +31,8 @@ def testa_conexao():
             return False
     
 bNet = testa_conexao()
-BuscaLoop = True
 if bNet:
-    while BuscaLoop:
+    while True:
         Busca_cep()
         time.sleep(3.2)
         os.system('clear')
@@ -42,7 +40,7 @@ if bNet:
         Res = Res.upper()
         if Res == 'N' or Res == 'NAO' or Res == 'NÃO':
             os.system('clear')
-            BuscaLoop = False
+            break
         else:
             os.system('clear')
 else:
